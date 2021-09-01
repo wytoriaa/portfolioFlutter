@@ -7,6 +7,8 @@ import 'package:portifolio/cssPage.dart';
 import 'package:portifolio/htmlPage.dart';
 import 'package:portifolio/jsPage.dart';
 import 'package:portifolio/reactPage.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class jobPage extends StatefulWidget {
   jobPage({Key? key}) : super(key: key);
 
@@ -35,6 +37,7 @@ final logo = <Logo>[
     return Scaffold(
       appBar: AppBar(
         title: Text(''),
+        
   
       ),
       drawer: Drawer(
@@ -169,6 +172,19 @@ final logo = <Logo>[
     ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){abrirWhatsApp();},
+      child: Icon(FontAwesomeIcons.whatsapp),),
+
+
     );
+  }
+}
+      abrirWhatsApp() async {
+  var whatsappUrl = "https://wa.me/5581998475176";
+
+  if (await canLaunch(whatsappUrl)) {
+    await launch(whatsappUrl);
+  } else {
+    throw 'Could not launch $whatsappUrl';
   }
 }
